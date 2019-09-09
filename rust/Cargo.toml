@@ -10,8 +10,8 @@ edition = "2018"
 [build-dependencies]
 
 [dependencies]
-# ssb-patchql = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib" }
-ssb-patchql-core = { path = "../../patchql/core"}
+ssb-patchql-core = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib" }
+# ssb-patchql-core = { path = "../../patchql/core"}
 
 [target.'cfg(target_os="android")'.dependencies]
 jni = "0.12.3"
