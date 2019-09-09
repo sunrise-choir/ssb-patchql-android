@@ -1,3 +1,6 @@
 
 before_install:
-   - ./custom_setup.sh
+  - ./custom_setup.sh
+install:
+  - source $HOME/.cargo/env && ./gradlew tasks --all --debug 
+
