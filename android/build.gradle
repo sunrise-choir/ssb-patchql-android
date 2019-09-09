@@ -73,6 +73,7 @@ repositories {
 //        url "$rootDir/../node_modules/react-native/android"
 //    }
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -81,8 +82,6 @@ dependencies {
     implementation 'com.apollographql.apollo:apollo-runtime:1.1.3'
     compileOnly 'org.jetbrains:annotations:13.0'
     testCompileOnly 'org.jetbrains:annotations:13.0'
-
-
 }
 
 afterEvaluate {
