@@ -1,0 +1,26 @@
+[package]
+name = "rust_native_patchql"
+version = "0.1.0"
+authors = ["pietgeursen@gmail.com"]
+license = "AGPL-3.0"
+description = ""
+keywords = [ "sunrisechoir", "patchql", "React Native" ]
+edition = "2018"
+
+[build-dependencies]
+
+[dependencies]
+# ssb-patchql = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib" }
+ssb-patchql-core = { path = "../../patchql/core"}
+
+[target.'cfg(target_os="android")'.dependencies]
+jni = "0.12.3"
+
+[lib]
+name = "patchql"
+crate-type = ["staticlib", "cdylib"]
+
+[profile.release]
+debug = false
+lto = true
+opt-level = 's'

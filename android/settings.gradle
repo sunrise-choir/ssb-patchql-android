@@ -1,0 +1,3 @@
+include ':testpatchqllib', ':android-patchql'
+
+

@@ -1,0 +1,6 @@
+mutation process($chunkSize: Int) {
+    process(chunkSize: $chunkSize){
+        chunkSize
+        latestSequence
+    }
+}
