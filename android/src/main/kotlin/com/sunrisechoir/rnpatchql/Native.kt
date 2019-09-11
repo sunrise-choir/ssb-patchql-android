@@ -1,8 +1,6 @@
 package com.sunrisechoir.rnpatchql
 
-import com.sunrisechoir.rngraphql.ProcessMutation
-
-class Patchql {
+open class Patchql {
     var patchqlPointer: Long = 0
 
     init {
