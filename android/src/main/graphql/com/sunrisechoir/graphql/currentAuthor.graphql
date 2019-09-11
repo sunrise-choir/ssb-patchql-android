@@ -1,0 +1,7 @@
+query currentAuthor{
+    currentAuthor{
+        name
+        id
+        imageLink
+    }
+}

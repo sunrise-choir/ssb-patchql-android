@@ -1,4 +1,4 @@
-package com.sunrisechoir.rnpatchql
+package com.sunrisechoir.patchql
 
 open class Patchql {
     var patchqlPointer: Long = 0
