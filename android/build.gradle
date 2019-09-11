@@ -59,6 +59,9 @@ cargo {
     libname = 'patchql'
     //targets = ['arm', 'arm64', 'x86', 'x86_64']
     targets = ['arm64', 'x86']
+    features {
+        defaultAnd("ssb-go-log")
+    }
 }
 
 //apollo {
