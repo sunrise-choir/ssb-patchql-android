@@ -21,8 +21,10 @@ class PatchqlApollo(): Patchql() {
 
     private val scalarTypeAdapters = ScalarTypeAdapters(Collections.emptyMap())
     private val jsonParser = Parser.jackson()
-    private val normalizer =
-        ResponseNormalizer.NO_OP_NORMALIZER as ResponseNormalizer<MutableMap<String, Any>>
+
+    @Suppress("UNCHECKED_CAST")
+    private val normalizer: ResponseNormalizer<MutableMap<String, Any>>? =
+        ResponseNormalizer.NO_OP_NORMALIZER as? ResponseNormalizer<MutableMap<String, Any>>
 
     fun query(operation: Operation<*, *, *>, cb: (Result<Response<*>>) -> Unit) {
         val queryString = marshalOperation(operation)
