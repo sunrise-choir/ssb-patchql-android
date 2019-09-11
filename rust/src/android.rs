@@ -19,13 +19,13 @@ use jni::sys::jlong;
 
 #[allow(non_snake_case)]
 #[no_mangle]
-pub extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_initLibrary(_env: JNIEnv, _: JObject) {
+pub extern "C" fn Java_com_sunrisechoir_patchql_Patchql_initLibrary(_env: JNIEnv, _: JObject) {
     hide_exceptions();
 }
 
 #[no_mangle]
 #[allow(non_snake_case)]
-pub unsafe extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_patchqlNew(
+pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlNew(
     env: JNIEnv,
     _class: JClass,
     offset_log_path: JString,
@@ -71,7 +71,7 @@ pub unsafe extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_patchqlNew(
 
 #[no_mangle]
 #[allow(non_snake_case)]
-pub unsafe extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_patchqlDestroy(
+pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlDestroy(
     _env: JNIEnv,
     _class: JClass,
     context_ptr: jlong,
@@ -81,7 +81,7 @@ pub unsafe extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_patchqlDestroy(
 
 #[no_mangle]
 #[allow(non_snake_case)]
-pub unsafe extern "C" fn Java_com_sunrisechoir_rnpatchql_Patchql_patchqlQueryAsync(
+pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlQueryAsync(
     env: JNIEnv,
     _class: JClass,
     context_ptr: jlong,
