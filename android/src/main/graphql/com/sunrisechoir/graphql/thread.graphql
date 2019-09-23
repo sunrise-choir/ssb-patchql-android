@@ -1,0 +1,24 @@
+query thread($rootId: String!){
+    thread(rootId: $rootId){
+        root{
+            id
+            text
+            author {
+                id
+                name
+                imageLink
+            }
+            likesCount
+        }
+        replies{
+            id
+            text
+            author {
+                id
+                name
+                imageLink
+            }
+            likesCount
+        }
+    }
+}
