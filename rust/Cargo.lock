@@ -270,7 +270,6 @@ dependencies = [
 [[package]]
 name = "flumedb"
 version = "0.1.1"
-source = "git+https://github.com/sunrise-choir/flumedb-rs?branch=go_offset_log#6c8049864a39480d912ed50d8291922e82c09186"
 dependencies = [
  "bidir_iter 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "buffered_offset_reader 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -963,7 +962,7 @@ dependencies = [
  "diesel_migrations 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "dotenv 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.6.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "flumedb 0.1.1 (git+https://github.com/sunrise-choir/flumedb-rs?branch=go_offset_log)",
+ "flumedb 0.1.1",
  "itertools 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "juniper 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "juniper_codegen 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1249,7 +1248,6 @@ dependencies = [
 "checksum failure 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "795bd83d3abeb9220f257e597aa0080a508b27533824adf336529648f6abf7e2"
 "checksum failure_derive 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "ea1063915fd7ef4309e222a5a07cf9c319fb9c7836b1f89b85458672dbb127e1"
 "checksum filetime 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "450537dc346f0c4d738dda31e790da1da5d4bd12145aad4da0d03d713cb3794f"
-"checksum flumedb 0.1.1 (git+https://github.com/sunrise-choir/flumedb-rs?branch=go_offset_log)" = "<none>"
 "checksum fnv 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)" = "2fad85553e09a6f881f739c29f0b00b0f01357c743266d478b68951ce23285f3"
 "checksum fuchsia-cprng 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 "checksum humantime 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "3ca7e5f2e110db35f93b837c81797f3714500b81d517bf20c431b16d3ca4f114"
