@@ -1,6 +1,12 @@
 package com.sunrisechoir.patchql
 
 open class Patchql {
+    class Params(
+        val offsetLogPath: String,
+        val databasePath: String,
+        val publicKey: String,
+        val privateKey: String
+    )
     var patchqlPointer: Long = 0
 
     init {
@@ -15,11 +21,15 @@ open class Patchql {
         patchqlPointer = this.patchqlNew(offsetLogPath = offsetLogPath, databasePath = databasePath, publicKey = publicKey, privateKey = privateKey)
     }
 
+    fun new(params: Params) {
+        new(params.offsetLogPath, params.databasePath, params.publicKey, params.privateKey)
+    }
+
     fun query(query: String, callback: (Result<String>) -> Unit) {
 
         this.patchqlQueryAsync(patchqlPointer, query) { err, result ->
             if (err != null) {
-                var throwable = Throwable(err)
+                val throwable = Throwable(err)
                 callback(Result.failure(throwable))
             } else {
                 callback(Result.success(result.orEmpty()))

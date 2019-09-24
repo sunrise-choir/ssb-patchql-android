@@ -1,6 +1,8 @@
 query threadsSummary(
     $last: Int,
+    $first: Int,
     $before: String,
+    $after: String,
     $rootsAuthoredBy: [String!],
     $rootsAuthoredBySomeoneFollowedBy: [String!],
     $hasRepliesAuthoredBy: [String!],
@@ -11,7 +13,9 @@ query threadsSummary(
 
     threads(
         last: $last,
+        first: $first,
         before: $before,
+        after: $after,
         rootsAuthoredBy: $rootsAuthoredBy,
         rootsAuthoredBySomeoneFollowedBy: $rootsAuthoredBySomeoneFollowedBy,
         hasRepliesAuthoredBy: $hasRepliesAuthoredBy,
@@ -24,6 +28,7 @@ query threadsSummary(
             hasNextPage
         }
         edges {
+            cursor
             node {
                 root {
                     id
