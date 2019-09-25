@@ -9,6 +9,7 @@ query thread($rootId: String!){
                 imageLink
             }
             likesCount
+            likedByMe
         }
         replies{
             id
@@ -19,6 +20,7 @@ query thread($rootId: String!){
                 imageLink
             }
             likesCount
+            likedByMe
         }
     }
 }
