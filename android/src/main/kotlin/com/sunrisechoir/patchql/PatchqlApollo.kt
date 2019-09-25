@@ -1,5 +1,6 @@
 package com.sunrisechoir.patchql
 
+
 import com.apollographql.apollo.api.Operation
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.internal.cache.normalized.ResponseNormalizer
@@ -7,17 +8,15 @@ import com.apollographql.apollo.internal.json.InputFieldJsonWriter
 import com.apollographql.apollo.internal.json.JsonWriter
 import com.apollographql.apollo.response.OperationResponseParser
 import com.apollographql.apollo.response.ScalarTypeAdapters
+import com.beust.klaxon.JsonArray
+import com.beust.klaxon.JsonObject
+import com.beust.klaxon.Parser
+import com.beust.klaxon.jackson.jackson
 import okio.Buffer
 import java.math.BigDecimal
 import java.util.*
 
-
-import com.beust.klaxon.Parser
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.jackson.jackson
-
-class PatchqlApollo(): Patchql() {
+class PatchqlApollo(val params: Params) {
 
     private val scalarTypeAdapters = ScalarTypeAdapters(Collections.emptyMap())
     private val jsonParser = Parser.jackson()
@@ -27,8 +26,10 @@ class PatchqlApollo(): Patchql() {
         ResponseNormalizer.NO_OP_NORMALIZER as? ResponseNormalizer<MutableMap<String, Any>>
 
     fun query(operation: Operation<*, *, *>, cb: (Result<Response<*>>) -> Unit) {
+
         val queryString = marshalOperation(operation)
-        this.query(queryString) { result ->
+        val patchql = PatchqlManager.getInstance(params)
+        patchql.query(queryString) { result ->
             cb(result.map { resultString ->
                 unMarshalOperation(resultString, operation)
             })

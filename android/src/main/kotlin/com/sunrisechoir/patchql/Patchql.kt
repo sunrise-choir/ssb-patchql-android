@@ -1,12 +1,32 @@
 package com.sunrisechoir.patchql
 
-open class Patchql {
-    class Params(
-        val offsetLogPath: String,
-        val databasePath: String,
-        val publicKey: String,
-        val privateKey: String
-    )
+class Params(
+    val offsetLogPath: String,
+    val databasePath: String,
+    val publicKey: String,
+    val privateKey: String
+)
+
+// This is a way of having a Singleton of Patchql. We want this because:
+// - memory use
+// - we want to enforce a single writer of the sqlite db
+class PatchqlManager private constructor(params: Params) {
+    private val instance = Patchql()
+
+    init {
+        instance.new(params)
+    }
+
+    fun query(query: String, callback: (Result<String>) -> Unit) {
+        instance.query(query, callback)
+    }
+
+    companion object : SingletonHolder<PatchqlManager, Params>(::PatchqlManager)
+}
+
+
+private class Patchql {
+
     var patchqlPointer: Long = 0
 
     init {
