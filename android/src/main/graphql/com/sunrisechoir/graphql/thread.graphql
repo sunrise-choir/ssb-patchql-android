@@ -10,6 +10,9 @@ query thread($rootId: String!){
             }
             likesCount
             likedByMe
+            references{
+                id
+            }
         }
         replies{
             id
@@ -21,6 +24,9 @@ query thread($rootId: String!){
             }
             likesCount
             likedByMe
+            references{
+                id
+            }
         }
     }
 }

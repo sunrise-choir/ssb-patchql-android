@@ -40,6 +40,9 @@ query threadsSummary(
                     }
                     likedByMe
                     likesCount
+                    references{
+                        id
+                    }
                 }
                 replies{
                     id
