@@ -1,13 +1,17 @@
 query posts(
     $last: Int,
+    $first: Int,
     $before: String,
+    $after: String,
     $query: String,
     $authors: [String!],
     $mentionsAuthors: [String!]
 ){
     posts(
         last: $last,
+        first: $first,
         before: $before,
+        after: $after,
         authors: $authors,
         mentionsAuthors: $mentionsAuthors,
         query: $query
@@ -17,6 +21,7 @@ query posts(
             hasNextPage
         }
         edges{
+            cursor
             node {
                 id
                 text
@@ -25,7 +30,13 @@ query posts(
                     name
                     imageLink
                 }
+                likedByMe
+                likesCount
+                references{
+                    id
+                }
                 rootKey
+
             }
         }
     }
