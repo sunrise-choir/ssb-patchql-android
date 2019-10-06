@@ -36,6 +36,15 @@ class PatchqlApollo(val params: Params) {
         }
     }
 
+    fun query(operation: Operation<*, *, *>): Response<*> {
+
+        val queryString = marshalOperation(operation)
+        val patchql = PatchqlManager.getInstance(params)
+        val resultString = patchql.query(queryString)
+        return unMarshalOperation(resultString, operation)
+
+    }
+
     private fun <D1 : Operation.Data, D2, V1 : Operation.Variables> marshalOperation(query: Operation<D1, D2, V1>): String {
 
         val buffer = Buffer()

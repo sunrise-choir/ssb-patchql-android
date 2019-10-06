@@ -15,7 +15,7 @@ use jni::objects::{JClass, JObject, JString};
 // This is just a pointer. We'll be returning it from our function.
 // We can't return one of the objects with lifetime information because the
 // lifetime checker won't let us.
-use jni::sys::jlong;
+use jni::sys::{jlong, jstring};
 
 #[allow(non_snake_case)]
 #[no_mangle]
@@ -140,4 +140,31 @@ pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlQueryAsync
 
     // Wait until the thread has started.
     rx.recv().unwrap();
+}
+
+#[no_mangle]
+#[allow(non_snake_case)]
+pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlQuerySync(
+    env: JNIEnv,
+    _class: JClass,
+    context_ptr: jlong,
+    query: JString,
+) -> jstring {
+    let query_string: String = env
+        .get_string(query)
+        .expect("Couldn't get java string!")
+        .into();
+
+    // We need to cast the raw pointer as in instance of patchql.
+    let patchql = (&mut *(context_ptr as *mut Patchql)).clone();
+
+    // Use the `JavaVM` interface to attach a `JNIEnv` to the current thread.
+    let response_string = patchql
+        .query(&query_string)
+        .expect("unable to query patchql");
+
+    JString::from(
+        env.new_string(response_string)
+        .expect("unable to create java string from rust string"),
+        ).into_inner() 
 }

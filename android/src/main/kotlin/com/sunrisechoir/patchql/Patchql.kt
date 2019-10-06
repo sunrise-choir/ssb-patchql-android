@@ -21,6 +21,10 @@ class PatchqlManager private constructor(params: Params) {
         instance.query(query, callback)
     }
 
+    fun query(query: String): String {
+        return instance.query(query)
+    }
+
     companion object : SingletonHolder<PatchqlManager, Params>(::PatchqlManager)
 }
 
@@ -57,6 +61,10 @@ private class Patchql {
         }
     }
 
+    fun query(query: String): String {
+        return this.patchqlQuerySync(patchqlPointer, query)
+    }
+
     protected fun finalize() {
         if (patchqlPointer > 0) {
             this.patchqlDestroy(patchqlPointer)
@@ -66,5 +74,6 @@ private class Patchql {
     private external fun patchqlNew(offsetLogPath: String, databasePath: String, publicKey: String, privateKey: String): Long
     private external fun patchqlDestroy(contextPointer: Long)
     private external fun patchqlQueryAsync(contextPointer: Long, query: String, callback: (String?, String?) -> Unit)
+    private external fun patchqlQuerySync(contextPointer: Long, query: String): String
     private external fun initLibrary()
 }
