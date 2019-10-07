@@ -1,0 +1,21 @@
+query post(
+    $id: String!
+){
+    post(
+        id: $id
+    ) {
+        id
+        text
+        author {
+            id
+            name
+            imageLink
+        }
+        likedByMe
+        likesCount
+        references{
+            id
+        }
+        rootKey
+    }
+}
