@@ -1,5 +1,5 @@
-query thread($rootId: String!){
-    thread(rootId: $rootId){
+query threadForPost($postId: String!){
+    threadForPost(postId: $postId){
         root{
             id
             text
