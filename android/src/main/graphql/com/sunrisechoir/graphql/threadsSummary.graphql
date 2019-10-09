@@ -30,6 +30,7 @@ query threadsSummary(
         edges {
             cursor
             node {
+
                 root {
                     id
                     text

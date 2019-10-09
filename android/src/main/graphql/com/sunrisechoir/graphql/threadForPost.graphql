@@ -1,32 +1,28 @@
+
 query threadForPost($postId: String!){
     threadForPost(postId: $postId){
         root{
-            id
-            text
-            author {
-                id
-                name
-                imageLink
-            }
-            likesCount
-            likedByMe
-            references{
-                id
-            }
+            ...postFragment
         }
         replies{
-            id
-            text
-            author {
-                id
-                name
-                imageLink
-            }
-            likesCount
-            likedByMe
-            references{
-                id
-            }
+            ...postFragment
         }
     }
 }
+
+fragment postFragment on Post{
+    id
+    text
+    author {
+        id
+        name
+        imageLink
+    }
+    likesCount
+    likedByMe
+    references{
+        id
+    }
+    assertedTimestamp
+}
+
