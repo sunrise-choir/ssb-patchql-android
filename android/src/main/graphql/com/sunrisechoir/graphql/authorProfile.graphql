@@ -1,0 +1,30 @@
+query authorProfile(
+    $id: String!,
+    $me: String!
+){
+    author(id: $id ){
+        id
+        name
+        description
+        imageLink
+        blocks {
+            id
+        }
+        blockedBy{
+            id
+        }
+        followedBy{
+            id
+        }
+        follows{
+            id
+        }
+        contactStatusTo(otherAuthor: $me){
+            public
+            private
+        }
+        contactStatusFrom(otherAuthor: $me){
+            public
+        }
+    }
+}
