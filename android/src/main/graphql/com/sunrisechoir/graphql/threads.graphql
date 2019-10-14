@@ -34,6 +34,7 @@ query threads(
             imageLink
           }
           likesCount
+            assertedTimestamp
         }
         replies{
           id
@@ -42,6 +43,7 @@ query threads(
             name
             imageLink
           }
+            assertedTimestamp
         }
       }
     }

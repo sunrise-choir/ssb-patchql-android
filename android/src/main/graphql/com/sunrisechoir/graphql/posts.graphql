@@ -36,6 +36,7 @@ query posts(
                     id
                 }
                 rootKey
+                assertedTimestamp
 
             }
         }
