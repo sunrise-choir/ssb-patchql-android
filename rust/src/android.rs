@@ -118,16 +118,27 @@ pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlQueryAsync
         let callback = callback_global.as_obj();
 
         // Use the `JavaVM` interface to attach a `JNIEnv` to the current thread.
-        let response_string = patchql
-            .query(&query_string)
-            .expect("unable to query patchql");
+        let res = patchql
+            .query(&query_string);
 
-        let response_java_string = JString::from(
-            env.new_string(response_string)
-                .expect("unable to create java string from rust string"),
-        );
+        let result_or_err: (JObject, JObject) = match res {
+            Ok(strng) => {
+                let response_java_string = JString::from(
+                    env.new_string(strng)
+                        .expect("unable to create java string from rust string"),
+                );
+                (JObject::null().into(), response_java_string.into())
+            },
+            Err(err) =>{
+                let response_java_string = JString::from(
+                    env.new_string(err.to_string())
+                        .expect("unable to create java string from rust string"),
+                );
+                (response_java_string.into(), JObject::null().into())
+            }
+        };
 
-        let result_or_err: (JObject, JObject) = (JObject::null().into(), response_java_string.into());
+
         // Fiiinnnally, callback.
         env.call_method(
             callback,
@@ -158,10 +169,13 @@ pub unsafe extern "C" fn Java_com_sunrisechoir_patchql_Patchql_patchqlQuerySync(
     // We need to cast the raw pointer as in instance of patchql.
     let patchql = (&mut *(context_ptr as *mut Patchql)).clone();
 
-    // Use the `JavaVM` interface to attach a `JNIEnv` to the current thread.
-    let response_string = patchql
-        .query(&query_string)
-        .expect("unable to query patchql");
+    let error_or_result = patchql
+            .query(&query_string);
+
+    let response_string = match error_or_result{
+        Ok(res) => res,
+        Err(err) => err.to_string()
+    }; 
 
     JString::from(
         env.new_string(response_string)
