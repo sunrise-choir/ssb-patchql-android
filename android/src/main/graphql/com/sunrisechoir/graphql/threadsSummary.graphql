@@ -8,7 +8,8 @@ query threadsSummary(
     $hasRepliesAuthoredBy: [String!],
     $hasRepliesAuthoredBySomeoneFollowedBy: [String!],
     $mentionsAuthors: [String!],
-    $privacy: Privacy
+    $privacy: Privacy,
+    $orderBy: OrderBy
 ){
 
     threads(
@@ -21,7 +22,8 @@ query threadsSummary(
         hasRepliesAuthoredBy: $hasRepliesAuthoredBy,
         hasRepliesAuthoredBySomeoneFollowedBy: $hasRepliesAuthoredBySomeoneFollowedBy,
         mentionsAuthors: $mentionsAuthors,
-        privacy: $privacy
+        privacy: $privacy,
+        orderBy: $orderBy
     ) {
         pageInfo {
             endCursor
