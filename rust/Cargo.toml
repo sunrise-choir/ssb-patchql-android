@@ -14,8 +14,8 @@ ssb-go-log = ["ssb-patchql-core/ssb-go-log"]
 [build-dependencies]
 
 [dependencies]
-#ssb-patchql-core = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib"}
-ssb-patchql-core = { path = "../../../choir/ssb-patchql/core"}
+ssb-patchql-core = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib"}
+#ssb-patchql-core = { path = "../../../choir/ssb-patchql/core"}
 
 [target.'cfg(target_os="android")'.dependencies]
 jni = "0.12.3"
