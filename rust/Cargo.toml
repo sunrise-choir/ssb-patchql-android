@@ -3,19 +3,20 @@ name = "rust_native_patchql"
 version = "0.1.0"
 authors = ["pietgeursen@gmail.com"]
 license = "AGPL-3.0"
-description = ""
-keywords = [ "sunrisechoir", "patchql", "React Native" ]
+description = "android bindings for patchql"
+keywords = [ "sunrisechoir", "patchql", "mobile bindings" ]
 edition = "2018"
 
 [features]
 default = []
+# If the `ssb-go-log` feature is enabled, pass it down to patchql-core.
+# This enables patchql to parse a ssb-go offset log, which is different to the js one.
 ssb-go-log = ["ssb-patchql-core/ssb-go-log"]
 
 [build-dependencies]
 
 [dependencies]
-ssb-patchql-core = { git = "https://github.com/sunrise-choir/ssb-patchql", branch = "refactor-to-lib"}
-#ssb-patchql-core = { path = "../../../choir/ssb-patchql/core"}
+ssb-patchql-core = { git = "https://github.com/sunrise-choir/ssb-patchql", rev = "8f4b1a78"}
 
 [target.'cfg(target_os="android")'.dependencies]
 jni = "0.12.3"
