@@ -14,7 +14,8 @@ query posts(
         after: $after,
         authors: $authors,
         mentionsAuthors: $mentionsAuthors,
-        query: $query
+        query: $query,
+        orderBy: ASSERTED
     ) {
         pageInfo {
             endCursor
