@@ -63,7 +63,7 @@ cargo {
     module = '../rust'
     libname = 'patchql'
     //targets = ['arm', 'arm64', 'x86', 'x86_64']
-    targets = ['arm64']
+    targets = ['arm64', 'arm']
     features {
         defaultAnd("ssb-go-log")
     }
