@@ -72,12 +72,21 @@ class PatchqlApollo(val params: Params) {
     }
 
     private fun mapJsonNumbersToBigDecimal(jsn: JsonObject): Map<String, Any?> {
+
         return jsn.mapValues({ entry ->
             when (val v = entry.value) {
                 is Int -> BigDecimal(v)
                 is Double -> BigDecimal(v)
                 is Long -> BigDecimal(v)
-                is JsonArray<*> -> v.map { item -> mapJsonNumbersToBigDecimal(item as JsonObject) }
+                is JsonArray<*> -> v.map { item ->
+                    when (val i = item) {
+                        is Int -> BigDecimal(i)
+                        is Double -> BigDecimal(i)
+                        is Long -> BigDecimal(i)
+                        is JsonObject -> mapJsonNumbersToBigDecimal(i)
+                        else -> i
+                    }
+                }
                 is JsonObject -> mapJsonNumbersToBigDecimal(v)
                 else -> v
             }
